@@ -8,7 +8,7 @@ VN: .double 7.1
 
 
 
-vf1a:		LDR D0, VB
+vf1a:			LDR D0, VB
 			LDR D1, VM
 			LDR D2, VN
 			FADD D2, D2, D0
@@ -24,7 +24,7 @@ VX: .double 7.1
 .type vf1b, "function"
 
 
-vf1b:		LDR D1, VX
+vf1b:			LDR D1, VX
 			LDR W2, VA
 			FSQRT D1, D1
 			UCVTF D2,W2
@@ -38,7 +38,7 @@ vf1b:		LDR D1, VX
 .data
 const: .float 3
 
-vf2a:		FSUB S4, S0, S1
+vf2a:			FSUB S4, S0, S1
 			FMUL S5, S4, S2
 			FADD S4, S3, S0
 			LDR S6,const
@@ -53,7 +53,7 @@ vf2a:		FSUB S4, S0, S1
 .data
 pi: .double 3.141592653
 
-vf2b:		STP x29, x30, [sp, #-16]!
+vf2b:			STP x29, x30, [sp, #-16]!
 			LDR D1, pi
 			FMUL D0, D0, D0
 			FMUL D0, D0, D1
@@ -64,7 +64,7 @@ vf2b:		STP x29, x30, [sp, #-16]!
 .global vf2c
 .type vf2c, "function"
 
-vf2c:		STP x29, x30, [sp, #-16]!
+vf2c:			STP x29, x30, [sp, #-16]!
 			FSUB D4, D0, D2
 			FMUL D4, D4, D4
 			FSUB D5, D1, D3
@@ -85,7 +85,7 @@ V7: .float 7
 V0: .float 0
 V0_1: .float 0.1
 
-vf3:		STP x29, x30, [sp, #-16]!
+vf3:			STP x29, x30, [sp, #-16]!
 			LDR S1, V1_5
 			LDR S2, V12_5
 			LDR S3, V7
@@ -93,7 +93,7 @@ vf3:		STP x29, x30, [sp, #-16]!
 			LDR S5, V0
 			LDR S9, V0_1
 
-ciclo:		CBZ X4, fim
+ciclo:			CBZ X4, fim
 			FMUL S6, S5, S5
 			FMUL S6, S6, S5
 			FMUL S6, S6, S1
@@ -105,7 +105,7 @@ ciclo:		CBZ X4, fim
 			FADD S5, S5, S9
 			B ciclo
 
-fim:		LDP x29, x30, [sp], #16
+fim:			LDP x29, x30, [sp], #16
 
 
 
@@ -113,7 +113,7 @@ fim:		LDP x29, x30, [sp], #16
 .global vf4
 .type vf4, "function"
 
-vf4:			STP x29, x30, [sp, #-16]!
+vf4:				STP x29, x30, [sp, #-16]!
 				MOV X3, #0
 				MOV X9, #0
 				MOV X10, #1
@@ -123,24 +123,24 @@ vf4:			STP x29, x30, [sp, #-16]!
 				UCVTF D10, X10
 				FADD D8, D8, D1
 
-ciclo2:			CBZ X1, fim2
+ciclo2:				CBZ X1, fim2
 				ADD X0, X0, #8
 				LDR D1, [X0]
 				ADD X3, X3, #1
 				SUB X9, X3, #1
 				FMUL D7, D0, D10
 
-exp_cicle:		CBZ X9, add
+exp_cicle:			CBZ X9, add
 				FMUL D7, D7, D0
 				SUB X9, X9, #1
 				B exp_cicle
 
-add:			FMUL D6, D7, D1
+add:				FMUL D6, D7, D1
 				FADD D8, D8, D6
 				SUB X1, X1, #1
 				B ciclo2
 
-fim2:			LDP x29, x30, [sp], #16
+fim2:				LDP x29, x30, [sp], #16
 				FMOV D0, D8
 				ret
 
@@ -151,10 +151,10 @@ czero : .double 0
 .type vf5, "function"
 
 
-vf5:			STP x29, x30, [sp, #-16]!
+vf5:				STP x29, x30, [sp, #-16]!
 				LDR D0, czero
 
-ciclo5:			CBZ w2, fim5
+ciclo5:				CBZ w2, fim5
 				LDR S1, [X0]
 				LDR S2, [X1]
 				ADD X0, X0, #4
@@ -166,7 +166,7 @@ ciclo5:			CBZ w2, fim5
 				SUB w2, w2, #1
 				B ciclo5
 
-fim5:			LDP x29, x30, [sp], #16
+fim5:				LDP x29, x30, [sp], #16
 				ret
 
 .text
@@ -174,10 +174,10 @@ fim5:			LDP x29, x30, [sp], #16
 .type vf6, "function"
 
 
-vf6:			STP x29, x30, [sp, #-16]!
+vf6:				STP x29, x30, [sp, #-16]!
 				MOV X8, XZR
 
-ciclo6:			CBZ w1, fim6
+ciclo6:				CBZ w1, fim6
 				LDR S4, [X0]
 				ADD X0, X0, #4
 				SUB w1, w1, #1
@@ -189,7 +189,7 @@ ciclo6:			CBZ w1, fim6
 				B ciclo6
 
 
-fim6:			LDP x29, x30, [sp], #16
+fim6:				LDP x29, x30, [sp], #16
 				MOV X0, X8
 				RET
 
